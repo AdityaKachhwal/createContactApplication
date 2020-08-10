@@ -1,0 +1,28 @@
+{
+  "customers": [
+    {
+      "id": 1,
+      "firstName": "Customer_1",
+      "lastName": "Customer_1",
+      "email": "customer1@mail.com",
+      "phone": "00000000000",
+      "status": "Active"
+    },
+    {
+      "id": 2,
+      "firstName": "Customer_2",
+      "lastName": "Customer_2",
+      "email": "customer2@mail.com",
+      "phone": "00000000000",
+      "status": "inactive"
+    },
+    {
+      "firstName": "aditya ",
+      "lastName": "d",
+      "email": "adi.sharma222@gmail.com",
+      "phone": "",
+      "status": "asdf",
+      "id": 3
+    }
+  ]
+}
