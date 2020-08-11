@@ -12,7 +12,7 @@ export interface ContactFormState {
   headers: any;
   checked: boolean;
   values: ContactValues[];
-  isActive: boolean;
+  active: boolean;
   submitSuccess: boolean;
   loading: boolean;
 }
@@ -28,11 +28,12 @@ class EditCustomer extends React.Component<
       customer: {},
       headers: {},
       checked: false,
-      isActive: true,
+      active: true,
       values: [],
       loading: false,
       submitSuccess: false,
     };
+    this.handleCheckClick = this.handleCheckClick.bind(this);
   }
 
   public componentDidMount(): void {
@@ -68,9 +69,13 @@ class EditCustomer extends React.Component<
   private setValues = (values: ContactValues) => {
     this.setState({ values: { ...this.state.values, ...values } });
   };
-  handleCheckClick = () => {
-    this.setState({ checked: !this.state.checked });
-  };
+  handleCheckClick(event: { target: any }) {
+    const target = event.target;
+    const value = target.name == "active" ? target.checked : target.value;
+    if (value) {
+      this.setValues({ active: this.state.active });
+    }
+  }
 
   private handleInputChanges = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -153,28 +158,16 @@ class EditCustomer extends React.Component<
                       placeholder="Enter customer's phone number"
                     />
                   </div>
-                  {/* 
-                  <div className="form-group col-md-12">
-                    <label htmlFor="status"> Status </label>
-                    <input
-                      type="text"
-                      id="isActive"
-                      defaultValue={this.state.customer.status}
-                      onChange={(e) => this.handleInputChanges(e)}
-                      name="isActive"
-                      className="form-control"
-                      placeholder="Enter Status"
-                    />
-                  </div> */}
+
                   <div>
                     <label>
                       Status
                       <input
                         type="checkbox"
-                        id="isActive"
-                        name="isActive"
-                        defaultValue={this.state.customer.status}
-                        checked={this.state.customer.status}
+                        id="active"
+                        name="active"
+                        defaultValue={"true"}
+                        defaultChecked={this.state.active}
                         onChange={this.handleCheckClick}
                         className="form-control"
                       />
